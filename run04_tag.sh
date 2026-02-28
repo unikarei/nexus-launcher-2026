@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# =============================================================================
+# Program Overview
+#   run04_tag.sh is the release-oriented Git operation script.
+#   It supports two controlled paths:
+#     A) changes exist: stage -> commit -> tag -> push branch -> push tag
+#     B) no changes:    tag-only on current HEAD -> push branch -> push tag
+#   Use this script when tagging/release traceability is required.
+# =============================================================================
+
 # このスクリプトは「直接実行」すること（source しない）
 if [ "$0" != "${BASH_SOURCE[0]}" ]; then
     printf 'Error: このスクリプトは source ではなく直接実行してください:\n  ./run04_tag.sh\n' >&2
@@ -37,10 +46,16 @@ echo "Staging changes..."
 git add -A
 
 if git diff --cached --quiet --exit-code; then
-    echo "[Error] No changes to commit." >&2
-    echo "        Strict mode: run04 requires a new commit before tagging." >&2
-    echo "        (Use run03 for commit+push only.)" >&2
-    exit 1
+    echo "[Info] No changes to commit."
+    read -r -p "Proceed with tag+push on current HEAD without commit? [y/N]: " TAG_ONLY
+    case "${TAG_ONLY}" in
+        y|Y|yes|YES)
+            ;;
+        *)
+            echo "[Info] Cancelled."
+            exit 1
+            ;;
+    esac
 else
     read -r -p "Enter commit message: " COMMIT_MSG
     if [ -z "${COMMIT_MSG// /}" ]; then

@@ -1,6 +1,14 @@
 @echo off
 setlocal enableextensions enabledelayedexpansion
 rem ========================================================================
+rem Program Overview
+rem   run04_tag.bat is the release-oriented Git operation script.
+rem   It supports two controlled paths:
+rem     A) changes exist: stage -> commit -> tag -> push branch -> push tag
+rem     B) no changes:    tag-only on current HEAD -> push branch -> push tag
+rem   Use this script when tagging/release traceability is required.
+rem ========================================================================
+rem ========================================================================
 rem Git Tag Script (run04_tag.bat)
 rem - Stage, commit, tag, and push (branch + tag)
 rem - Use this when you want a release-like commit + tag flow
@@ -53,28 +61,30 @@ for /f "delims=" %%s in ('git status --porcelain') do set HAS_CHANGES=1
 
 if defined HAS_CHANGES (
     set /p COMMIT_MSG="Enter commit message: "
-    if "%COMMIT_MSG%"=="" (
+    if "!COMMIT_MSG!"=="" (
         echo [Error] Commit message cannot be empty.
         pause
         exit /b 1
     )
     rem Sanitize double quotes in message (" -> ')
-    set "COMMIT_MSG=%COMMIT_MSG:"='%"
+    set "COMMIT_MSG=!COMMIT_MSG:"='!"
 
     echo Creating commit with message:
-    echo   %COMMIT_MSG%
-    git commit -m "%COMMIT_MSG%"
+    echo   !COMMIT_MSG!
+    git commit -m "!COMMIT_MSG!"
     if errorlevel 1 (
         echo [Error] Commit failed.
         pause
         exit /b 1
     )
 ) else (
-    echo [Error] No changes to commit.
-    echo         Strict mode: run04 requires a new commit before tagging.
-    echo         (Use run03 for commit+push only.)
-    pause
-    exit /b 1
+    echo [Info] No changes to commit.
+    set /p TAG_ONLY="Proceed with tag+push on current HEAD without commit? [y/N]: "
+    if /I not "!TAG_ONLY!"=="Y" (
+        echo [Info] Cancelled.
+        pause
+        exit /b 1
+    )
 )
 
 rem [6] Prompt for a new tag version (e.g., v1.2.3)

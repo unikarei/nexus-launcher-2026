@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# =============================================================================
+# Program Overview
+#   run03_commit.sh is the standard day-to-day Git operation script.
+#   It performs a safe interactive workflow for:
+#     1) staging all changes,
+#     2) creating one commit, and
+#     3) pushing the current branch to origin.
+#   It intentionally does NOT create tags. Use run04_tag.sh for tagging.
+# =============================================================================
+
 # このスクリプトは「直接実行」すること（source しない）
 if [ "$0" != "$BASH_SOURCE" ]; then
     echo "Error: このスクリプトは source ではなく直接実行してください:" >&2

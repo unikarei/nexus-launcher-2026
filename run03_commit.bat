@@ -1,6 +1,15 @@
 @echo off
 setlocal enableextensions enabledelayedexpansion
 rem ========================================================================
+rem Program Overview
+rem   run03_commit.bat is the standard day-to-day Git operation script.
+rem   It performs a safe interactive workflow for:
+rem     1) staging all changes,
+rem     2) creating one commit, and
+rem     3) pushing the current branch to origin.
+rem   It intentionally does NOT create tags. Use run04_tag.bat for tagging.
+rem ========================================================================
+rem ========================================================================
 rem Git Commit Script (run03_commit.bat)
 rem - Stage, commit, and push changes (no tagging)
 rem - Interactive commit message input
