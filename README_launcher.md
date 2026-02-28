@@ -34,6 +34,17 @@ cd d:\usr8_work\work_23_chatgpt\16_PoCs\0000_Launcher\launcher
 pip install -r requirements.txt
 ```
 
+#### フロントエンド（Vite, 開発時HMR）
+
+```powershell
+cd d:\usr8_work\work_23_chatgpt\16_PoCs\0000_Launcher\launcher
+npm install
+```
+
+- デフォルト動作は **開発モード**（`LAUNCHER_ENV=development`）です。
+- 開発モードでは、Viteサーバー（`http://127.0.0.1:5173`）が起動していれば自動でViteアセットを使用します。
+- Viteが未起動の場合は、自動で従来の`/static`配信にフォールバックします。
+
 ### 3. アプリケーション設定
 
 `apps.yaml` を編集して、管理したいアプリケーションを定義します：
@@ -126,6 +137,31 @@ cd d:\usr8_work\work_23_chatgpt\16_PoCs\0000_Launcher
 
 ```powershell
 cd launcher
+python main.py
+```
+
+### Vite開発モードの起動（推奨）
+
+ターミナル1（FastAPI）:
+
+```powershell
+cd launcher
+set LAUNCHER_ENV=development
+python main.py
+```
+
+ターミナル2（Vite）:
+
+```powershell
+cd launcher
+npm run dev
+```
+
+### 本番モード（静的配信）
+
+```powershell
+cd launcher
+set LAUNCHER_ENV=production
 python main.py
 ```
 

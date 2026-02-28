@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Local Web Launcher</title>
-    {% if use_vite %}
-    <script type="module" src="{{ vite_origin }}/@vite/client"></script>
-    {% else %}
     <link rel="stylesheet" href="/static/style.css">
-    {% endif %}
 </head>
 <body>
     <div class="container">
@@ -138,10 +134,6 @@
     <!-- Toast notification container -->
     <div id="toast-container"></div>
 
-    {% if use_vite %}
-    <script type="module" src="{{ vite_origin }}/frontend/main.js"></script>
-    {% else %}
     <script src="/static/app.js"></script>
-    {% endif %}
 </body>
 </html>

@@ -441,11 +441,3 @@ function showToast(message, type = 'info') {
         setTimeout(() => toast.remove(), 400);
     }, 3500);
 }
-
-// Keep inline onclick handlers working when this file is loaded as an ES module.
-window.openApp = openApp;
-window.launchApp = launchApp;
-window.stopApp = stopApp;
-window.editWorkspace = editWorkspace;
-window.showLogs = showLogs;
-window.deleteApp = deleteApp;

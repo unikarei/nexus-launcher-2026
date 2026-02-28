@@ -3,6 +3,7 @@ import asyncio
 import os
 import socket
 import sys
+from contextlib import closing
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -40,6 +41,40 @@ config_manager = ConfigManager()
 app_manager = AppManager()
 
 
+# Frontend mode settings
+LAUNCHER_ENV = os.environ.get("LAUNCHER_ENV", "development").strip().lower() or "development"
+VITE_HOST = os.environ.get("VITE_HOST", "127.0.0.1").strip() or "127.0.0.1"
+try:
+    VITE_PORT = int((os.environ.get("VITE_PORT", "5173").strip() or "5173"))
+except ValueError:
+    VITE_PORT = 5173
+
+
+def _is_vite_reachable(host: str = VITE_HOST, port: int = VITE_PORT, timeout_sec: float = 0.15) -> bool:
+    """Return True when the Vite dev server is reachable."""
+    try:
+        with closing(socket.create_connection((host, int(port)), timeout=timeout_sec)):
+            return True
+    except Exception:
+        return False
+
+
+def _frontend_context() -> dict:
+    """Build template context for frontend asset loading.
+
+    Default behavior is development mode. In development mode, Vite is used
+    when available; otherwise, static assets are served as a safe fallback.
+    """
+    env_mode = "development" if LAUNCHER_ENV not in {"production", "prod"} else "production"
+    use_vite = env_mode == "development" and _is_vite_reachable()
+    vite_origin = f"http://{VITE_HOST}:{VITE_PORT}"
+    return {
+        "launcher_env": env_mode,
+        "use_vite": use_vite,
+        "vite_origin": vite_origin,
+    }
+
+
 # API Models
 class LaunchRequest(BaseModel):
     app_id: str
@@ -64,7 +99,8 @@ class UpdateWorkspaceRequest(BaseModel):
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     """Render main launcher page."""
-    return templates.TemplateResponse("index.html", {"request": request})
+    context = {"request": request, **_frontend_context()}
+    return templates.TemplateResponse("index.html", context)
 
 
 @app.get("/api/apps")
