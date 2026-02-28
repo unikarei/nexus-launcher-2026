@@ -1,5 +1,6 @@
 @echo off
 setlocal enableextensions enabledelayedexpansion
+set "RUN04_SCRIPT_VERSION=v0.0.1"
 rem ========================================================================
 rem Program Overview
 rem   run04_tag.bat is the release-oriented Git operation script.
@@ -48,6 +49,7 @@ if "%LATEST_TAG%"=="" set LATEST_TAG=v0.0.0
 echo ========================================
 echo               Git Tag Script
 echo ========================================
+echo Script version : !RUN04_SCRIPT_VERSION!
 echo Current branch : %CUR_BRANCH%
 echo Latest tag     : %LATEST_TAG%
 echo.

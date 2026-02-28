@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+RUN04_SCRIPT_VERSION="v0.0.1"
 
 # =============================================================================
 # Program Overview
@@ -37,6 +38,7 @@ cat <<EOF
 ========================================
            Git Tag Script
 ========================================
+Script version : $RUN04_SCRIPT_VERSION
 Current branch : $CUR_BRANCH
 Latest tag     : $LATEST_TAG
 

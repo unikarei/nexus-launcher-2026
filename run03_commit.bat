@@ -1,5 +1,6 @@
 @echo off
 setlocal enableextensions enabledelayedexpansion
+set "RUN03_SCRIPT_VERSION=v0.0.1"
 rem ========================================================================
 rem Program Overview
 rem   run03_commit.bat is the standard day-to-day Git operation script.
@@ -50,6 +51,7 @@ if "%LATEST_TAG%"=="" set LATEST_TAG=v0.0.0
 echo ========================================
 echo            Git Commit Script
 echo ========================================
+echo Script version : !RUN03_SCRIPT_VERSION!
 echo Current branch : %CUR_BRANCH%
 echo Latest tag     : %LATEST_TAG%
 echo.
