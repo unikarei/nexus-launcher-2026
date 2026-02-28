@@ -20,7 +20,7 @@ from app_manager import AppManager
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Local Web Launcher",
+    title="Nexus Web Launcher",
     description="Launch and manage local web applications",
     version="1.0.0"
 )
@@ -308,7 +308,7 @@ def main():
     port = pick_port(host, preferred_port)
 
     print("=" * 60)
-    print("  Local Web Launcher")
+    print("  Nexus Web Launcher")
     print("=" * 60)
     print()
     print(f"  Starting launcher at http://{host}:{port}")

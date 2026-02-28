@@ -5415,3 +5415,15 @@ Backend is starting.
 [2026-02-28 13:35:25] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
 [2026-02-28 13:35:35] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
 [2026-02-28 13:36:06] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:36:15] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:36:25] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:36:56] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:37:05] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:37:15] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:37:46] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:37:55] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:38:05] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:38:12] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:38:43] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:38:52] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
+[2026-02-28 13:39:02] WARN: Not opening http://127.0.0.1:3000 because Code.exe is listening on localhost:3000 and WSL IP 172.20.8.205:3000 is not reachable.
