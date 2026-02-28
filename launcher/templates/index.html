@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Web Launcher</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Local Web Launcher</h1>
+            <div class="header-actions">
+                <button id="refresh-btn" class="btn btn-secondary">🔄 Refresh</button>
+                <button id="add-app-btn" class="btn btn-primary">➕ Add App</button>
+            </div>
+        </header>
+
+        <main id="apps-container">
+            <!-- Apps will be loaded here -->
+            <div class="loading">Loading applications...</div>
+        </main>
+    </div>
+
+    <!-- Add App Modal -->
+    <div id="add-app-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Application</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="add-app-form">
+                    <div class="form-group">
+                        <label for="app-id">ID *</label>
+                        <input type="text" id="app-id" required placeholder="e.g., youtube-transcripter">
+                        <small>Unique identifier (lowercase, dashes allowed)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-name">Name *</label>
+                        <input type="text" id="app-name" required placeholder="e.g., YouTube Transcripter">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-workspace">Workspace Path *</label>
+                        <input type="text" id="app-workspace" required placeholder="C:\path\to\workspace or /home/user/workspace">
+                        <small>Full path to the application folder</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-ports">Ports (comma-separated)</label>
+                        <input type="text" id="app-ports" placeholder="e.g., 3000, 8000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-health-url">Health Check URL *</label>
+                        <input type="text" id="app-health-url" required placeholder="http://localhost:8000/health">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-health-timeout">Health Check Timeout (seconds)</label>
+                        <input type="number" id="app-health-timeout" value="120" min="10" max="600">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-open-urls">Open URLs (one per line) *</label>
+                        <textarea id="app-open-urls" rows="3" required placeholder="http://localhost:3000&#10;http://localhost:8000/docs"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-start-cmd">Start Command *</label>
+                        <input type="text" id="app-start-cmd" required placeholder="./start_app.sh --with-frontend">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-start-shell">Shell Type</label>
+                        <select id="app-start-shell">
+                            <option value="bash">bash</option>
+                            <option value="powershell">powershell</option>
+                            <option value="cmd">cmd</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-add-btn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Workspace Modal -->
+    <div id="edit-workspace-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Workspace</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="edit-workspace-form">
+                    <input type="hidden" id="edit-app-id">
+                    <div class="form-group">
+                        <label for="edit-workspace">Workspace Path *</label>
+                        <input type="text" id="edit-workspace" required>
+                        <small>Full path to the application folder</small>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-edit-btn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logs Modal -->
+    <div id="logs-modal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Application Logs - <span id="logs-app-name"></span></h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <pre id="logs-content" class="logs-content">Loading logs...</pre>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="close-logs-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+- id: youtube-transcripter
+  name: YouTube Transcripter
+  workspace: \\wsl.localhost\Ubuntu\home\ohide\usr8_work\work_23_chatgpt\16_PoCs\0106_cc-sdd
+  start:
+  - cmd: ./start_app.sh
+    shell: bash
+    cwd: '{workspace}'
+  - cmd: docker compose up -d frontend
+    shell: bash
+    cwd: '{workspace}'
+  health:
+  - url: http://127.0.0.1:8000/health
+    timeout_sec: 120
+  open:
+  - url: http://127.0.0.1:3000
+  - url: http://127.0.0.1:8000/docs
+  ports:
+  - 3000
+  - 8000
+- id: Kindle2PDF
+  name: Kindle2PDF
+  workspace: 'D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF'
+  start:
+  - cmd: 'Start-Process -FilePath cmd.exe -ArgumentList "/k","chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat" -Wait'
+    shell: powershell
+    cwd: '{workspace}'
+  health: []
+  open: []
+  ports: []

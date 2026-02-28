@@ -1,0 +1,147 @@
+[2026-01-12 23:19:28] === Starting Kindle2PDF ===
+[2026-01-12 23:19:28] Executing: cmd.exe /c 00_run_kindle_to_pdf.bat
+[2026-01-12 23:19:28] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+Using virtual environment...
+Traceback (most recent call last):
+  File "D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF\kindle_to_pdf.py", line 155, in setup_browser
+    print("\u2713 ƒuƒ‰ƒEƒU‚Ì‹N“®‚É¬Œ÷‚µ‚Ü‚µ‚½")
+UnicodeEncodeError: 'cp932' codec can't encode character '\u2713' in position 0: illegal multibyte sequence
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF\kindle_to_pdf.py", line 928, in run
+    self.setup_browser()
+  File "D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF\kindle_to_pdf.py", line 158, in setup_browser
+    print(f"\u2717 ƒuƒ‰ƒEƒU‚Ì‹N“®‚ÉŽ¸”s‚µ‚Ü‚µ‚½: {e}")
+UnicodeEncodeError: 'cp932' codec can't encode character '\u2717' in position 0: illegal multibyte sequence
+============================================================
+Kindle to PDF Converter
+============================================================
+
+y’ˆÓŽ–€z
+- ‚±‚Ìƒc[ƒ‹‚ÍŒÂl“I‚ÈƒoƒbƒNƒAƒbƒv–Ú“I‚Ì‚Ý‚ÉŽg—p‚µ‚Ä‚­‚¾‚³‚¢
+- Amazon‚Ì—˜—p‹K–ñ‚ðŠm”F‚µ‚Ä‚­‚¾‚³‚¢
+- DRM•ÛŒì‚³‚ê‚½ƒRƒ“ƒeƒ“ƒc‚Ìˆµ‚¢‚É‚Í\•ª’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢
+============================================================
+
+ƒuƒ‰ƒEƒU‚ð‹N“®‚µ‚Ä‚¢‚Ü‚·...
+
+
+ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½: 'cp932' codec can't encode character '\u2717' in position 0: illegal multibyte sequence
+‘±s‚·‚é‚É‚Í‰½‚©ƒL[‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢ . . . 
+ƒoƒbƒ` ƒWƒ‡ƒu‚ðI—¹‚µ‚Ü‚·‚© (Y/N)? ƒoƒbƒ` ƒWƒ‡ƒu‚ðI—¹‚µ‚Ü‚·‚© (Y/N)? 
+[2026-01-13 07:37:10] === Starting Kindle2PDF ===
+[2026-01-13 07:37:10] Executing: cmd.exe /c chcp 65001>nul & set PYTHONUTF8=1 & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat
+[2026-01-13 07:37:10] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+Using virtual environment...
+Fatal Python error: preconfig_init_utf8_mode: invalid PYTHONUTF8 environment variable value
+Python runtime state: preinitializing
+
+Press any key to continue . . . 
+[2026-01-13 21:11:14] === Starting Kindle2PDF ===
+[2026-01-13 21:11:14] Executing: cmd.exe /c chcp 65001>nul & set PYTHONUTF8=1 & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat
+[2026-01-13 21:11:14] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+Using virtual environment...
+Fatal Python error: preconfig_init_utf8_mode: invalid PYTHONUTF8 environment variable value
+Python runtime state: preinitializing
+
+Press any key to continue . . . 
+[2026-01-13 21:44:45] === Starting Kindle2PDF ===
+[2026-01-13 21:44:45] Executing: cmd.exe /c chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat <nul
+[2026-01-13 21:44:45] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+Using virtual environment...
+============================================================
+Kindle to PDF Converter
+============================================================
+
+ã€æ³¨æ„äº‹é …ã€‘
+- ã“ã®ãƒ„ãƒ¼ãƒ«ã¯å€‹äººçš„ãªãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ç›®çš„ã®ã¿ã«ä½¿ç”¨ã—ã¦ãã ã•ã„
+- Amazonã®åˆ©ç”¨è¦ç´„ã‚’ç¢ºèªã—ã¦ãã ã•ã„
+- DRMä¿è­·ã•ã‚ŒãŸã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã®æ‰±ã„ã«ã¯ååˆ†æ³¨æ„ã—ã¦ãã ã•ã„
+============================================================
+
+ãƒ–ãƒ©ã‚¦ã‚¶ã‚’èµ·å‹•ã—ã¦ã„ã¾ã™...
+âœ“ ãƒ–ãƒ©ã‚¦ã‚¶ã®èµ·å‹•ã«æˆåŠŸã—ã¾ã—ãŸ
+Kindle Cloud Readerã‚’é–‹ã„ã¦ã„ã¾ã™...
+
+============================================================
+ã€é‡è¦ã€‘æ‰‹å‹•ã§ãƒ­ã‚°ã‚¤ãƒ³ã—ã€èª­ã¿ãŸã„æœ¬ã‚’é–‹ã„ã¦ãã ã•ã„ã€‚
+
+1. Amazonã«ãƒ­ã‚°ã‚¤ãƒ³
+2. æœ¬ã‚’é¸æŠžã—ã¦é–‹ãï¼ˆæ–°ã—ã„ã‚¿ãƒ–ã§é–‹ãã¾ã™ï¼‰
+3. æœ¬ã®æœ€åˆã®ãƒšãƒ¼ã‚¸ï¼ˆ1ãƒšãƒ¼ã‚¸ç›®ï¼‰ã«ç§»å‹•
+4. F11ã‚­ãƒ¼ã§å…¨ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ï¼ˆæŽ¨å¥¨ï¼‰
+5. ãƒšãƒ¼ã‚¸ã‚ãã‚Šæ–¹å‘ã‚’ç¢ºèª
+   - å·¦çŸ¢å°ã‚­ãƒ¼ã§æ¬¡ã®ãƒšãƒ¼ã‚¸ã«é€²ã‚€å ´åˆ: config.jsonã§ "page_turn_direction": "left"
+   - å³çŸ¢å°ã‚­ãƒ¼ã§æ¬¡ã®ãƒšãƒ¼ã‚¸ã«é€²ã‚€å ´åˆ: config.jsonã§ "page_turn_direction": "right"
+6. ãƒ–ãƒ©ã‚¦ã‚¶ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªçŠ¶æ…‹ã«ã™ã‚‹
+
+æº–å‚™ãŒã§ããŸã‚‰ã€ã“ã®ã‚¿ãƒ¼ãƒŸãƒŠãƒ«ã«æˆ»ã£ã¦Enterã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚
+============================================================
+
+Traceback (most recent call last):
+  File "D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF\kindle_to_pdf.py", line 931, in run
+    self.open_kindle_cloud_reader()
+  File "D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF\kindle_to_pdf.py", line 193, in open_kindle_cloud_reader
+    input()
+EOFError: EOF when reading a line
+
+
+ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ: EOF when reading a line
+Press any key to continue . . . 
+[2026-01-13 21:51:03] === Starting Kindle2PDF ===
+[2026-01-13 21:51:03] Executing: cmd.exe /c start "" /wait cmd.exe /k "chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat"
+[2026-01-13 21:51:03] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+ƒAƒNƒZƒX‚ª‹‘”Û‚³‚ê‚Ü‚µ‚½B
+s started with PID: 1088
+[2026-01-13 21:51:03] Health check passed - application is running
+[2026-01-13 21:53:15] === Starting Kindle2PDF ===
+[2026-01-13 21:53:15] Executing: cmd.exe /c start "" /wait cmd.exe /k "chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat"
+[2026-01-13 21:53:15] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+ƒAƒNƒZƒX‚ª‹‘”Û‚³‚ê‚Ü‚µ‚½B
+s started with PID: 3408
+[2026-01-13 21:53:16] Health check passed - application is running
+[2026-01-13 21:54:31] === Starting Kindle2PDF ===
+[2026-01-13 21:54:31] Executing: cmd.exe /c start "" /wait cmd.exe /k "chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat"
+[2026-01-13 21:54:31] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+ƒAƒNƒZƒX‚ª‹‘”Û‚³‚ê‚Ü‚µ‚½B
+s started with PID: 12608
+[2026-01-13 21:54:31] Health check passed - application is running
+[2026-01-13 21:57:42] === Starting Kindle2PDF ===
+[2026-01-13 21:57:42] Executing: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath cmd.exe -WorkingDirectory "{workspace}" -ArgumentList "/k","chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat" -Wait
+[2026-01-13 21:57:42] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+Start-Process : ‚±‚ÌƒRƒ}ƒ“ƒh‚ÍAƒpƒ‰ƒ[ƒ^[ "WorkingDirectory" ‚É–³Œø‚È’l‚ªŽw’è‚³‚ê‚Ä‚¢‚é‚©A‚±‚ê‚ª‚±‚ÌƒRƒ}ƒ“ƒh‚Æ‚ÍŽg—p‚Å‚«‚È‚¢‚à‚Ì‚Å‚ ‚é‚½‚ßAŽÀs‚Å
+‚«‚Ü‚¹‚ñB—LŒø‚È“ü—Í‚ðŽw’è‚µAƒRƒ}ƒ“ƒh‚ðÄ“xŽÀs‚µ‚Ä‚­‚¾‚³‚¢B
+”­¶êŠ s:1 •¶Žš:1
++ Start-Process -FilePath cmd.exe -WorkingDirectory "{workspace}" -Argu ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process]ADirectoryNotFoundException
+    + FullyQualifiedErrorId : DirectoryNotFoundException,Microsoft.PowerShell.Commands.StartProcessCommand
+ 
+[2026-01-13 22:01:27] === Starting Kindle2PDF ===
+[2026-01-13 22:01:27] Executing: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath cmd.exe -ArgumentList "/k","chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat" -Wait
+[2026-01-13 22:01:27] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+[2026-01-13 22:01:27] Process started with PID: 9888
+[2026-01-13 22:01:27] Health check passed - application is running
+[2026-01-13 22:51:16] === Starting Kindle2PDF ===
+[2026-01-13 22:51:16] Executing: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath cmd.exe -ArgumentList "/k","chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat" -Wait
+[2026-01-13 22:51:16] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+[2026-01-13 22:51:16] Process started with PID: 2440
+[2026-01-13 22:51:16] Health check passed - application is running
+[2026-01-16 08:57:02] === Starting Kindle2PDF ===
+[2026-01-16 08:57:02] Executing: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath cmd.exe -ArgumentList "/k","chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat" -Wait
+[2026-01-16 08:57:02] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+[2026-01-16 08:57:02] Process started with PID: 10032
+[2026-01-16 08:57:02] Health check passed - application is running
+[2026-01-16 20:16:36] Application stopped
+[2026-01-16 20:16:42] === Starting Kindle2PDF ===
+[2026-01-16 20:16:42] Executing: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath cmd.exe -ArgumentList "/k","chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat" -Wait
+[2026-01-16 20:16:42] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+[2026-01-16 20:16:45] Process started with PID: 24616
+[2026-01-16 20:16:46] Health check passed - application is running
+[2026-01-19 18:35:10] === Starting Kindle2PDF ===
+[2026-01-19 18:35:10] Executing: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath cmd.exe -ArgumentList "/k","chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat" -Wait
+[2026-01-19 18:35:10] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+[2026-01-19 18:35:10] Process started with PID: 2896
+[2026-01-19 18:35:10] Health check passed - application is running

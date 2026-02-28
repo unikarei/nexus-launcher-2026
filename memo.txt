@@ -1,0 +1,17 @@
+原因（行き詰まりポイントの正体）
+
+最初の根本原因は Docker Desktop/Engine が止まっていたことです（com.docker.service 停止＋ dockerDesktopLinuxEngine へ接続不可）。これで YouTube Transcripter の 8000 が開かず、health check がずっと connection refused になっていました。
+その後「起動してるはずなのに 3000/8000 が開かない」問題は、frontend を WSL 内で npm run dev 起動すると Windows 側へ確実に port publish されない/待ちが長いケースがあるためです。docker compose の frontend サービスで起動すると 3000 が確実にホストへ公開されます。
+対策（こちらで実施済み）
+
+Docker Desktop を起動し、Docker Engine が応答する状態まで復旧（docker info OK）。
+WSL 側で docker compose up -d frontend を実行し、0.0.0.0:3000->3000 の port publish を確認。
+Windows 側で疎通確認：127.0.0.1:8000 と 127.0.0.1:3000 が両方 TcpTestSucceeded=True、http://127.0.0.1:8000/health も OK。
+Launcher 側の設定を安定化：
+apps.yaml の youtube-transcripter を、frontend 起動を docker compose up -d frontend に変更
+health/open URL を localhost ではなく 127.0.0.1 に統一（IPv6/名前解決の揺れ回避）
+次の作業（あなた側で確認するだけ）
+
+Launcher を再起動して、YouTube Transcripter を Launch
+http://127.0.0.1:3000
+http://127.0.0.1:8000/docs
