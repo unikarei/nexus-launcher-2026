@@ -1,6 +1,28 @@
 @echo off
 setlocal EnableDelayedExpansion
 
+REM ==============================================================================
+REM  run00_start_launcher.bat
+REM ------------------------------------------------------------------------------
+REM  Professional Overview
+REM  This startup script provides a robust, operator-friendly entry point for the
+REM  Local Web Launcher. It performs a Docker preflight check, auto-starts Docker
+REM  Desktop when required, waits for Engine readiness with bounded retries, and
+REM  then launches the Python-based launcher application.
+REM
+REM  Design Intent
+REM    1) Minimize manual setup steps for daily development startup.
+REM    2) Reduce false failures caused by Docker/WSL cold-start timing.
+REM    3) Provide deterministic behavior with clear operational logs.
+REM    4) Support both CI-like checks (--preflight) and interactive use (--pause).
+REM
+REM  Operational Flow (high level)
+REM    - Parse optional arguments.
+REM    - Validate Docker Engine connectivity.
+REM    - Start Docker Desktop if needed and wait for readiness.
+REM    - Execute launcher/main.py once prerequisites are satisfied.
+REM ==============================================================================
+
 if /i "%LAUNCHER_DEBUG%"=="1" (
 	echo [DEBUG] Batch started: %~f0
 	echo [DEBUG] Args: %*

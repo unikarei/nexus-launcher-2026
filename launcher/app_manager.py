@@ -261,7 +261,48 @@ class AppManager:
                     return False
 
             # Succeed if either loopback family works.
-            return await try_host("127.0.0.1") or await try_host("::1")
+            if await try_host("127.0.0.1") or await try_host("::1"):
+                return True
+
+            # For apps running in WSL, localhost forwarding can be unavailable or delayed.
+            # Fall back to the distro IP when available.
+            distro = self._get_wsl_distro_from_workspace(app.workspace)
+            if distro:
+                wsl_ip = self._get_wsl_ip(distro)
+                if wsl_ip and await try_host(wsl_ip):
+                    return True
+
+            return False
+
+        def _rewrite_health_url_for_wsl(url: str) -> str:
+            """Rewrite localhost/127.0.0.1 health URL to WSL distro IP when applicable."""
+            distro = self._get_wsl_distro_from_workspace(app.workspace)
+            if not distro:
+                return url
+
+            wsl_ip = self._get_wsl_ip(distro)
+            if not wsl_ip:
+                return url
+
+            try:
+                parsed = urlparse(url)
+                if parsed.scheme not in ("http", "https"):
+                    return url
+                host = (parsed.hostname or "").lower()
+                if host not in ("127.0.0.1", "localhost"):
+                    return url
+                if not parsed.port:
+                    return url
+
+                netloc = f"{wsl_ip}:{parsed.port}"
+                if parsed.username or parsed.password:
+                    userinfo = parsed.username or ""
+                    if parsed.password:
+                        userinfo += f":{parsed.password}"
+                    netloc = f"{userinfo}@{netloc}"
+                return urlunparse(parsed._replace(netloc=netloc))
+            except Exception:
+                return url
 
         has_http_checks = bool(getattr(app, "health", None))
         has_port_checks = bool(getattr(app, "ports", None))
@@ -285,10 +326,28 @@ class AppManager:
                             http_ok = True
                             break
             except Exception as e:
-                # Log error but continue to next health check
-                if emit_errors:
-                    print(f"Health check failed for {app.id} at {health.url}: {e}")
-                continue
+                # Retry localhost checks against WSL distro IP when applicable.
+                fallback_url = _rewrite_health_url_for_wsl(health.url)
+                if fallback_url != health.url:
+                    try:
+                        async with aiohttp.ClientSession() as session:
+                            async with session.get(
+                                fallback_url,
+                                timeout=aiohttp.ClientTimeout(total=timeout)
+                            ) as response:
+                                if response.status < 500:
+                                    http_ok = True
+                                    break
+                    except Exception as fallback_e:
+                        # Log error but continue to next health check
+                        if emit_errors:
+                            print(f"Health check failed for {app.id} at {health.url} and fallback {fallback_url}: {fallback_e}")
+                        continue
+                else:
+                    # Log error but continue to next health check
+                    if emit_errors:
+                        print(f"Health check failed for {app.id} at {health.url}: {e}")
+                    continue
 
         # If ports are declared, require them to be reachable too.
         ports_ok = True

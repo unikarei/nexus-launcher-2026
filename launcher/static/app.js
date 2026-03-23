@@ -60,6 +60,27 @@ function setupEventListeners() {
             document.querySelectorAll('.more-menu-dropdown.open').forEach(d => d.classList.remove('open'));
         }
     });
+
+    // Action buttons inside app cards (event delegation)
+    const appsContainer = document.getElementById('apps-container');
+    appsContainer.addEventListener('click', (e) => {
+        const src = (e.target instanceof Element) ? e.target : null;
+        if (!src) return;
+
+        const actionBtn = src.closest('[data-action]');
+        if (!actionBtn) return;
+
+        const action = actionBtn.getAttribute('data-action');
+        const appId = actionBtn.getAttribute('data-app-id');
+        if (!action || !appId) return;
+
+        if (action === 'launch') {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('[Launcher] Launch clicked:', appId);
+            launchApp(appId);
+        }
+    });
 }
 
 // Load applications
@@ -157,7 +178,7 @@ function createAppCard(app) {
         </div>
 
         <div class="app-actions">
-            <button class="btn btn-success" onclick="launchApp('${app.id}')" ${isStarting ? 'disabled' : ''}>
+            <button class="btn btn-success" data-action="launch" data-app-id="${escapeHtml(app.id)}" ${isStarting ? 'disabled' : ''}>
                 🚀 Launch
             </button>
             <button class="btn btn-danger" onclick="stopApp('${app.id}')" ${isStopped ? 'disabled' : ''}>
@@ -190,6 +211,37 @@ function closeMoreMenu(menuId) {
 
 // Launch app (health check → start if needed → open URLs)
 async function launchApp(appId) {
+    console.log('[Launcher] Sending launch request:', appId);
+    // Open placeholder tabs immediately on user click to avoid popup blocking
+    // (window.open after async await is often blocked by browsers).
+    const app = apps.find(a => a.id === appId);
+    const expectedTabs = Math.max(1, Array.isArray(app?.open_urls) ? app.open_urls.length : 0);
+    const preOpenedTabs = [];
+    let blockedCount = 0;
+
+    const writeLaunchingPage = (tab, appName) => {
+        try {
+            if (!tab || tab.closed) return;
+            tab.document.open();
+            tab.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>Launching ${escapeHtml(appName || appId)}...</title></head><body style="font-family:system-ui,Segoe UI,Arial,sans-serif;padding:24px;line-height:1.6"><h2>Launching ${escapeHtml(appName || appId)}...</h2><p>Please wait while health check/startup completes.</p><p>If this screen does not change, check <b>Logs</b> in Nexus Web Launcher.</p></body></html>`);
+            tab.document.close();
+        } catch (_) {
+            // Ignore cross-window write errors.
+        }
+    };
+
+    for (let i = 0; i < expectedTabs; i++) {
+        const w = window.open('about:blank', '_blank');
+        if (w) {
+            writeLaunchingPage(w, app?.name);
+            preOpenedTabs.push(w);
+        } else {
+            blockedCount += 1;
+        }
+    }
+
+    showToast('Launching... waiting for health check/startup', 'info');
+
     try {
         const response = await fetch('/api/apps/launch', {
             method: 'POST',
@@ -201,15 +253,46 @@ async function launchApp(appId) {
 
         if (result.status === 'success') {
             showToast(result.message, 'success');
-            if (result.open_urls && Array.isArray(result.open_urls)) {
-                result.open_urls.forEach(url => window.open(url, '_blank'));
+            const targetUrls = (result.open_urls && Array.isArray(result.open_urls) && result.open_urls.length > 0)
+                ? result.open_urls
+                : (Array.isArray(app?.open_urls) ? app.open_urls : []);
+
+            if (targetUrls.length > 0) {
+                targetUrls.forEach((url, index) => {
+                    const tab = preOpenedTabs[index];
+                    if (tab && !tab.closed) {
+                        tab.location.href = url;
+                    } else {
+                        const newTab = window.open(url, '_blank');
+                        if (!newTab) blockedCount += 1;
+                    }
+                });
+
+                // Close any extra placeholder tabs
+                if (preOpenedTabs.length > targetUrls.length) {
+                    preOpenedTabs.slice(targetUrls.length).forEach(tab => {
+                        try { if (tab && !tab.closed) tab.close(); } catch (_) { /* ignore */ }
+                    });
+                }
+
+                if (blockedCount > 0) {
+                    showToast('Popup was blocked by browser. Please allow popups for this site.', 'error');
+                }
+            } else {
+                showToast('Launch succeeded, but no open URL is configured.', 'error');
             }
         } else {
+            preOpenedTabs.forEach(tab => {
+                try { if (tab && !tab.closed) tab.close(); } catch (_) { /* ignore */ }
+            });
             showToast(result.message, 'error');
         }
 
         loadApps();
     } catch (error) {
+        preOpenedTabs.forEach(tab => {
+            try { if (tab && !tab.closed) tab.close(); } catch (_) { /* ignore */ }
+        });
         console.error('Error launching app:', error);
         showToast('Failed to launch application', 'error');
     }
@@ -443,9 +526,10 @@ function showToast(message, type = 'info') {
 }
 
 // Keep inline onclick handlers working when this file is loaded as an ES module.
-window.openApp = openApp;
 window.launchApp = launchApp;
 window.stopApp = stopApp;
 window.editWorkspace = editWorkspace;
 window.showLogs = showLogs;
 window.deleteApp = deleteApp;
+window.toggleMoreMenu = toggleMoreMenu;
+window.closeMoreMenu = closeMoreMenu;

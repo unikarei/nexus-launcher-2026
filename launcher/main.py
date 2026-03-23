@@ -135,6 +135,7 @@ async def get_apps():
 @app.post("/api/apps/launch")
 async def launch_app(request: LaunchRequest):
     """Launch an application."""
+    print(f"[DEBUG] Launch request received: app_id={request.app_id}")
     apps = config_manager.load_apps()
     app = next((a for a in apps if a.id == request.app_id), None)
     

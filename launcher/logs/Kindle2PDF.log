@@ -145,3 +145,25 @@ Start-Process : このコマンドは、パラメーター "WorkingDirectory" に無効な値が指定
 [2026-01-19 18:35:10] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
 [2026-01-19 18:35:10] Process started with PID: 2896
 [2026-01-19 18:35:10] Health check passed - application is running
+[2026-02-28 15:32:44] === Starting Kindle2PDF ===
+[2026-02-28 15:32:44] Executing: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath cmd.exe -ArgumentList "/k","chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat" -Wait
+[2026-02-28 15:32:44] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+[2026-02-28 15:32:44] Process started with PID: 13372
+[2026-02-28 15:32:44] Health check passed - application is running
+[2026-02-28 15:41:46] Application stopped
+[2026-02-28 15:41:47] === Starting Kindle2PDF ===
+[2026-02-28 15:41:47] Executing: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath cmd.exe -ArgumentList "/k","chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat" -Wait
+[2026-02-28 15:41:47] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+[2026-02-28 15:41:48] Process started with PID: 9396
+[2026-02-28 15:41:48] Health check passed - application is running
+[2026-02-28 15:45:24] === Starting Kindle2PDF ===
+[2026-02-28 15:45:24] Executing: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath cmd.exe -ArgumentList "/k","chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat" -Wait
+[2026-02-28 15:45:24] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+[2026-02-28 15:45:24] Process started with PID: 4600
+[2026-02-28 15:45:24] Health check passed - application is running
+[2026-02-28 15:49:06] Application stopped
+[2026-02-28 15:49:12] === Starting Kindle2PDF ===
+[2026-02-28 15:49:12] Executing: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Start-Process -FilePath cmd.exe -ArgumentList "/k","chcp 65001>nul & set PYTHONIOENCODING=utf-8 & call 00_run_kindle_to_pdf.bat" -Wait
+[2026-02-28 15:49:12] Working directory: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF (command uses: D:\usr8_work\work_23_chatgpt\16_PoCs\0104_Kindle2PDF)
+[2026-02-28 15:49:12] Process started with PID: 25808
+[2026-02-28 15:49:12] Health check passed - application is running
